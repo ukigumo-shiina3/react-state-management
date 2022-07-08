@@ -1,20 +1,13 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { Todo } from "src/types";
 
-const TODOS = [
-  { id: 1, text: "foo", isDone: false },
-  { id: 2, text: "bar", isDone: true },
-];
-
-type Todo = {
-  id: number;
-  text: string;
-  isDone: boolean;
+type Props = {
+  todos: Todo[];
+  setTodos: Dispatch<SetStateAction<Todo[]>>;
 };
 
-const Home: NextPage = () => {
-  const [todos, setTodos] = useState<Todo[]>(TODOS);
-
+const Home: NextPage<Props> = ({ todos, setTodos }) => {
   const toggleIsDone = (id: Todo["id"]) => {
     console.log(id);
     setTodos((prevTodos) => {
