@@ -10,8 +10,8 @@ const Add: NextPage = () => {
     // ジェネリクスで入れた値(form)を一覧で取得する
 
     event.preventDefault();
-    const text = event.currentTarget.text.value;
-    dispatch(addTodo(text));
+    const text: string = event.currentTarget.text.value;
+    dispatch(addTodo({ text }));
     event.currentTarget.reset();
   };
 

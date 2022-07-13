@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
   const toggleIsDone = (id: Todo["id"]) => {
-    dispatch(toggleTodo(id));
+    dispatch(toggleTodo({ id }));
   };
 
   return (
