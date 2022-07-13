@@ -1,10 +1,10 @@
-import { combineReducers, legacy_createStore } from "redux";
 import { todosReducer } from "./todos";
+import { configureStore } from "@reduxjs/toolkit";
 
-export const store = legacy_createStore(
-  combineReducers({
+export const store = configureStore({
+  reducer: {
     todos: todosReducer,
-  })
-); // combineReducers: 色んな状態をまとめて管理する
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
