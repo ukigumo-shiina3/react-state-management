@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "src/types";
 
 const initialState: Todo[] = [
-  { id: 1, text: "foofoo", isDone: false },
+  { id: 1, text: "foo", isDone: false },
   { id: 2, text: "bar", isDone: true },
 ];
 
@@ -11,22 +11,18 @@ const todosSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<Pick<Todo, "text">>) => {
-      const newTodo = {
+      state.push({
         id: state.length + 1,
         text: action.payload.text,
         isDone: false,
-      };
-      const newState = [...state, newTodo];
-      return newState;
+      });
     },
     toggleTodo: (state, action: PayloadAction<Pick<Todo, "id">>) => {
-      const newState = state.map((todo) => {
+      state.forEach((todo) => {
         if (todo.id === action.payload.id) {
-          return { ...todo, isDone: !todo.isDone };
+          todo.isDone = !todo.isDone;
         }
-        return todo;
       });
-      return newState;
     },
   },
 });
